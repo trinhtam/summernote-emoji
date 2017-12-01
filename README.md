@@ -1,7 +1,7 @@
 # summernote-emoji
 Summernote emoji plugin
 
-![Summernote emoji plugin](http://trinhtam.info/plugins/summernote-emoji/example/ScreenShot.png)
+![Screen Shot](http://trinhtam.info/plugins/summernote-emoji/example/ScreenShot.png)
 
 **Demo** http://trinhtam.info/plugins/summernote-emoji/example
 # Installation & Usage:
