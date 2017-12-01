@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TamEmoji - Summernote emoji plugin</title>
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+    <!--include fontawesome-->
+    <script src="https://use.fontawesome.com/52e183519a.js"></script>
+
+    <!-- include summernote css-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+
+    <!--include tam-emoji ccs-->
+    <link href="../tam-emoji/css/emoji.css" rel="stylesheet">
+
+    <style>
+        body {
+            width: 800px;
+            margin: 20px auto 0;
+        }
+        .btn:focus {
+            outline: none;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="pull-left">
+            <a href="/">Home</a>
+        </div>
+        <div class="pull-right">
+            <a href="https://github.com/trinhtam/summernote-emoji">Download</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <textarea id="summernote"></textarea>
+</body>
+
+<!-- include summernote js-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<!--include tam-emoji js-->
+<script src="../tam-emoji/js/config.js"></script>
+<script src="../tam-emoji/js/tam-emoji.js"></script>
+<script>
+    $(document).ready(function () {
+//      document.emojiType = 'unicode'; // default: image
+        document.emojiSource = '../tam-emoji/img';
+        $("#summernote").summernote({
+            height: 350,
+            toolbar: [
+                ['insert', ['emoji']],
+                ['tool', ['undo', 'redo', 'codeview']]
+            ]
+        });
+    });
+</script>
+</html>
