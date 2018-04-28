@@ -1,9 +1,9 @@
 # summernote-emoji
 Summernote emoji plugin
 
-![Screen Shot](http://trinhtam.info/plugins/summernote-emoji/example/ScreenShot-tam-emoji.png)
+![Screen Shot](http://tamit.info/plugins/summernote-emoji/example/ScreenShot-tam-emoji.png)
 
-**Demo** http://trinhtam.info/plugins/summernote-emoji/example
+**Demo** http://tamit.info/plugins/summernote-emoji/example
 # Installation & Usage:
 In your ```<head>``` section, add the following stylesheet links. Adjust the lib/css path to match yours.
 ```
