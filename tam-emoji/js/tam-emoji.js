@@ -208,6 +208,7 @@
                     }
                 });
             };
+            
             context.memo('button.emoji', function () {
                 var button = ui.button({
                     contents: '<i class="fa fa-smile-o emoji-picker-container emoji-picker"></i>',
