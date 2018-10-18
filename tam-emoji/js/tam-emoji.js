@@ -1,6 +1,268 @@
-/*!
- * Tam Emoji (http://trinhtam.info/plugins/summernote-emoji/example/)
- * Copyright 2017 Trinh Tam.
- * Email: contact.tamsoft@gmail.com
- * Website: trinhtam.info */
-!function(e){"function"==typeof define&&define.amd?define(["jquery"],e):"object"==typeof module&&module.exports?module.exports=e(require("jquery")):e(window.jQuery)}(function(e){e.extend(e.summernote.plugins,{emoji:function(i){var n=this,t=e.summernote.ui;Array.prototype.filter||(Array.prototype.filter=function(e){var i=this.length>>>0;if("function"!=typeof e)throw new TypeError;for(var n=[],t=arguments[1],o=0;i>o;o++)if(o in this){var a=this[o];e.call(t,a,o,this)&&n.push(a)}return n});var o=function(){var t=e("body");t.on("keydown",function(e){(e.keyCode===27||e.keyCode===9)&&n.$panel.hide()}),t.on("mouseup",function(i){i=i.originalEvent||i;var t=i.target||window;e(t).hasClass("emoji-picker")||n.$panel.hide()}),t.on("click",".emoji-menu-tab",function(i){i.stopPropagation();var n=0,t=e(this).attr("class").split(" ");t=t[1].split("-"),3!==t.length&&(t=t[0]+"-"+t[1],e(".emoji-menu-tabs td").each(function(i){var o=e(this).find("a"),a=o.attr("class").split(" ");a=a[1].split("-"),a=a[0]+"-"+a[1],t===a?(o.attr("class","emoji-menu-tab "+a+"-selected"),n=i):o.attr("class","emoji-menu-tab "+a)}),s(n))}),e(document).on("click",".emoji-items a",function(){var t=e(".label",e(this)).text();if("unicode"===document.emojiType)i.invoke("editor.insertText",c(t));else{var o=e(r(n.icons[t]));o[0].attachEvent&&o[0].attachEvent("onresizestart",function(e){e.returnValue=!1},!1),i.invoke("editor.insertNode",o[0])}ConfigStorage.get("emojis_recent",function(e){e=e||Config.defaultRecentEmojis||[];var i=e.indexOf(t);return i?(-1!==i&&e.splice(i,1),e.unshift(t),e.length>42&&(e=e.slice(42)),void ConfigStorage.set({emojis_recent:e})):!1})})},a=function(){var e,i,t,o,a,s,r,c,l,m;for(o=void 0,s=void 0,t=void 0,a={},c={},r=void 0,i=void 0,l=void 0,e=void 0,m=void 0,s=0;s<Config.EmojiCategories.length;){for(m=Config.EmojiCategorySpritesheetDimens[s][1],o=0;o<Config.EmojiCategories[s].length;)i=Config.Emoji[Config.EmojiCategories[s][o]],r=i[1][0],l=Math.floor(o/m),e=o%m,a[":"+r+":"]=[s,l,e,":"+r+":"],c[r]=i[0],o++;s++}n.icons=a,n.reverseIcons=c,Config.rx_codes||Config.init_unified()},s=function(i){var t=e(".emoji-items");t.html(""),i>0?e.each(n.icons,function(e,o){n.icons.hasOwnProperty(e)&&o[0]===i-1&&t.append('<a href="javascript:void(0)" title="'+Config.htmlEntities(e)+'">'+r(o,!0)+'<span class="label">'+Config.htmlEntities(e)+"</span></a>")}):ConfigStorage.get("emojis_recent",function(e){e=e||Config.defaultRecentEmojis||[];var i,o;for(o=0;o<e.length;o++)i=e[o],n.icons[i]&&t.append('<a href="javascript:void(0)" title="'+Config.htmlEntities(i)+'">'+r(n.icons[i],!0)+'<span class="label">'+Config.htmlEntities(i)+"</span></a>")})},r=function(e){var i=e[0],n=e[1],t=e[2],o=e[3],a=document.emojiSource+"/emoji_spritesheet_!.png",s=document.emojiSource+"/blank.gif",r=25,c=-(r*t),l=-(r*n),m=Config.EmojiCategorySpritesheetDimens[i][1]*r,u=Config.EmojiCategorySpritesheetDimens[i][0]*r,d="display:inline-block;";return d+="width:"+r+"px;",d+="height:"+r+"px;",d+="background:url('"+a.replace("!",i)+"') "+c+"px "+l+"px no-repeat;",d+="background-size:"+m+"px "+u+"px;",'<img src="'+s+'" class="img" style="'+d+'" alt="'+Config.htmlEntities(o)+'">'},c=function(e){return e.replace(Config.rx_colons,function(e){var i;return i=Config.mapcolon[e],i?i:""})};i.memo("button.emoji",function(){var e=t.button({contents:'<i class="fa fa-smile-o emoji-picker-container emoji-picker"></i>',click:function(){void 0===document.emojiSource&&(document.emojiSource=""),void 0===document.emojiType&&(document.emojiType="");var e=n.$panel.width();console.log(e,n.$panel.position().left),e>n.$panel.position().left&&n.$panel.css({left:"10px"}),n.$panel.show()}});return n.emoji=e.render(),n.emoji}),this.events={"summernote.init":function(e,i){o()}},this.initialize=function(){this.$panel=e('<div class="emoji-menu">\n    <div class="emoji-items-wrap1">\n        <table class="emoji-menu-tabs">\n            <tbody>\n            <tr>\n                <td><a class="emoji-menu-tab icon-recent-selected"></a></td>\n                <td><a class="emoji-menu-tab icon-smile"></a></td>\n                <td><a class="emoji-menu-tab icon-flower"></a></td>\n                <td><a class="emoji-menu-tab icon-bell"></a></td>\n                <td><a class="emoji-menu-tab icon-car"></a></td>\n                <td><a class="emoji-menu-tab icon-grid"></a></td>\n            </tr>\n            </tbody>\n        </table>\n        <div class="emoji-items-wrap mobile_scrollable_wrap">\n            <div class="emoji-items"></div>\n        </div>\n    </div>\n</div>').hide(),this.$panel.appendTo(n.emoji),a(),s(0)},this.destroy=function(){this.$panel.remove(),this.$panel=null}}})});
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(window.jQuery);
+    }
+}(function ($) {
+    $.extend($.summernote.plugins, {
+        'emoji': function (context) {
+            var self = this;
+            var KEY_ESC = 27;
+            var KEY_TAB = 9;
+            var ui = $.summernote.ui;
+            var icons = {};
+            var reverseIcons = {};
+            var chunk = function (val, chunkSize) {
+                var R = [];
+                for (var i = 0; i < val.length; i += chunkSize)
+                    R.push(val.slice(i, i + chunkSize));
+                return R;
+            };
+            /*IE polyfill*/
+            if (!Array.prototype.filter) {
+                Array.prototype.filter = function (fun /*, thisp*/) {
+                    var len = this.length >>> 0;
+                    if (typeof fun != "function")
+                        throw new TypeError();
+
+                    var res = [];
+                    var thisp = arguments[1];
+                    for (var i = 0; i < len; i++) {
+                        if (i in this) {
+                            var val = this[i];
+                            if (fun.call(thisp, val, i, this))
+                                res.push(val);
+                        }
+                    }
+                    return res;
+                };
+            }
+
+            var addListener = function () {
+                var $body = $('body');
+                $body.on('keydown', function(e) {
+                    if (e.keyCode === KEY_ESC || e.keyCode === KEY_TAB) {
+                        self.$panel.hide();
+                    }
+                });
+                $body.on('mouseup', function(e) {
+                    e = e.originalEvent || e;
+                    var target = e.target || window;
+                    if ($(target).hasClass('emoji-picker') || $(target).hasClass('emoji-menu-tab')) {
+                        return;
+                    }
+                    self.$panel.hide();
+                });
+                $body.on('click', '.emoji-menu-tab', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var index = 0;
+                    var curclass = $(this).attr("class").split(' ');
+                    curclass = curclass[1].split('-');
+                    if(curclass.length===3) return;
+                    curclass = curclass[0]+'-'+curclass[1];
+                    $('.emoji-menu-tabs td').each(function(i){
+                        var $a = $(this).find('a');
+                        var aclass = $a.attr("class").split(' ');
+                        aclass = aclass[1].split('-');
+                        aclass = aclass[0]+'-'+aclass[1];
+                        if(curclass === aclass){
+                            $a.attr('class', 'emoji-menu-tab '+aclass+'-selected');
+                            index = i;
+                        }else{
+                            $a.attr('class', 'emoji-menu-tab '+aclass);
+                        }
+                    });
+                    updateEmojisList(index);
+                });
+                $(document).on('click', '.emoji-items a', function(){
+                    var emoji = $('.label', $(this)).text();
+                    if (document.emojiType === 'unicode') {
+                        context.invoke('editor.insertText', colonToUnicode(emoji));
+                    } else {
+                        var $img = $(createdEmojiIcon(self.icons[emoji]));
+                        if ($img[0].attachEvent) {
+                            $img[0].attachEvent('onresizestart', function(e) {
+                                e.returnValue = false;
+                            }, false);
+                        }
+                        context.invoke('editor.insertNode', $img[0]);
+                    }
+                    ConfigStorage.get('emojis_recent', function(curEmojis) {
+                        curEmojis = curEmojis || Config.defaultRecentEmojis || [];
+                        var pos = curEmojis.indexOf(emoji);
+                        if (!pos) {
+                            return false;
+                        }
+                        if (pos !== -1) {
+                            curEmojis.splice(pos, 1);
+                        }
+                        curEmojis.unshift(emoji);
+                        if (curEmojis.length > 42) {
+                            curEmojis = curEmojis.slice(42);
+                        }
+                        ConfigStorage.set({
+                            emojis_recent : curEmojis
+                        });
+                    });
+                });
+            };
+            var loadEmojis = function () {
+                var column, dataItem, hex, i, icons, j, name, reverseIcons, row, totalColumns;
+                i = void 0;
+                j = void 0;
+                hex = void 0;
+                icons = {};
+                reverseIcons = {};
+                name = void 0;
+                dataItem = void 0;
+                row = void 0;
+                column = void 0;
+                totalColumns = void 0;
+                j = 0;
+                while (j < Config.EmojiCategories.length) {
+                    totalColumns = Config.EmojiCategorySpritesheetDimens[j][1];
+                    i = 0;
+                    while (i < Config.EmojiCategories[j].length) {
+                        dataItem = Config.Emoji[Config.EmojiCategories[j][i]];
+                        name = dataItem[1][0];
+                        row = Math.floor(i / totalColumns);
+                        column = i % totalColumns;
+                        icons[':' + name + ':'] = [j, row, column, ':' + name + ':'];
+                        reverseIcons[name] = dataItem[0];
+                        i++;
+                    }
+                    j++;
+                }
+                self.icons = icons;
+                self.reverseIcons = reverseIcons;
+                if (!Config.rx_codes) {
+                    Config.init_unified();
+                }
+            };
+            var updateEmojisList = function (index) {
+                var $items = $('.emoji-items');
+                $items.html('');
+                if(index > 0) {
+                    $.each(self.icons, function (key, icon) {
+                        if (self.icons.hasOwnProperty(key)
+                            && icon[0] === (index - 1)) {
+                            $items.append('<a href="javascript:void(0)" title="'
+                                + Config.htmlEntities(key) + '">'
+                                + createdEmojiIcon(icon, true)
+                                + '<span class="label">' + Config.htmlEntities(key)
+                                + '</span></a>');
+                        }
+                    });
+                }else{
+                    ConfigStorage.get('emojis_recent', function(curEmojis) {
+                        curEmojis = curEmojis || Config.defaultRecentEmojis || [];
+                        var key, i;
+                        for (i = 0; i < curEmojis.length; i++) {
+                            key = curEmojis[i];
+                            if (self.icons[key]) {
+                                $items.append('<a href="javascript:void(0)" title="'
+                                    + Config.htmlEntities(key) + '">'
+                                    + createdEmojiIcon(self.icons[key], true)
+                                    + '<span class="label">' + Config.htmlEntities(key)
+                                    + '</span></a>');
+                            }
+                        }
+                    });
+                }
+            };
+            var createdEmojiIcon = function(emoji){
+                var category = emoji[0];
+                var row = emoji[1];
+                var column = emoji[2];
+                var name = emoji[3];
+                var filename = document.emojiSource + '/emoji_spritesheet_!.png';
+                var blankGifPath =document.emojiSource + '/blank.gif';
+                var iconSize = 25;
+                var xoffset = -(iconSize * column);
+                var yoffset = -(iconSize * row);
+                var scaledWidth = (Config.EmojiCategorySpritesheetDimens[category][1] * iconSize);
+                var scaledHeight = (Config.EmojiCategorySpritesheetDimens[category][0] * iconSize);
+
+                var style = 'display:inline-block;';
+                style += 'width:' + iconSize + 'px;';
+                style += 'height:' + iconSize + 'px;';
+                style += 'background:url(\'' + filename.replace('!', category) + '\') '
+                    + xoffset + 'px ' + yoffset + 'px no-repeat;';
+                style += 'background-size:' + scaledWidth + 'px ' + scaledHeight
+                    + 'px;';
+                return '<img src="' + blankGifPath + '" class="img" style="'
+                    + style + '" alt="' + Config.htmlEntities(name) + '">';
+            };
+            var colonToUnicode = function(emoij) {
+                return emoij.replace(Config.rx_colons, function(m) {
+                    var val;
+                    val = Config.mapcolon[m];
+                    if (val) {
+                        return val;
+                    } else {
+                        return '';
+                    }
+                });
+            };
+            context.memo('button.emoji', function () {
+                var button = ui.button({
+                    contents: '<i class="fa fa-smile-o emoji-picker-container emoji-picker"></i>',
+                    click: function () {
+                        if(document.emojiSource === undefined)
+                            document.emojiSource = '';
+                        if(document.emojiType === undefined)
+                            document.emojiType = '';
+
+                        var width = self.$panel.width();
+                        if(width > self.$panel.position().left){
+                            self.$panel.css({left: '0', top: '100%'});
+                        }
+
+                        self.$panel.show();
+                    }
+                });
+                self.emoji = button.render();
+                return self.emoji;
+            });
+
+            // This events will be attached when editor is initialized.
+            this.events = {
+                'summernote.init': function (we, e) {
+                    addListener();
+                }
+            };
+            this.initialize = function () {
+                this.$panel = $('<div class="emoji-menu">\n' +
+                    '    <div class="emoji-items-wrap1">\n' +
+                    '        <table class="emoji-menu-tabs">\n' +
+                    '            <tbody>\n' +
+                    '            <tr>\n' +
+                    '                <td><a class="emoji-menu-tab icon-recent-selected"></a></td>\n' +
+                    '                <td><a class="emoji-menu-tab icon-smile"></a></td>\n' +
+                    '                <td><a class="emoji-menu-tab icon-flower"></a></td>\n' +
+                    '                <td><a class="emoji-menu-tab icon-bell"></a></td>\n' +
+                    '                <td><a class="emoji-menu-tab icon-car"></a></td>\n' +
+                    '                <td><a class="emoji-menu-tab icon-grid"></a></td>\n' +
+                    '            </tr>\n' +
+                    '            </tbody>\n' +
+                    '        </table>\n' +
+                    '        <div class="emoji-items-wrap mobile_scrollable_wrap">\n' +
+                    '            <div class="emoji-items"></div>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '</div>').hide();
+                this.$panel.appendTo(this.emoji.parent());
+                loadEmojis();
+                updateEmojisList(0);
+            };
+            this.destroy = function () {
+                this.$panel.remove();
+                this.$panel = null;
+            };
+        }
+    });
+}));

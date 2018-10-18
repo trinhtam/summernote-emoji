@@ -12,7 +12,7 @@ In your ```<head>``` section, add the following stylesheet links. Adjust the lib
 The end of your ```<body>``` section, add the following JavaScript links. This library depends on jQuery, so jQuery must also be included, before these scripts are run. Once again, adjust the tam-emoji/js path to match yours.
 ```
   <script src="tam-emoji/js/config.js"></script>
-  <script src="tam-emoji/js/tam-emoji.js"></script>
+  <script src="tam-emoji/js/tam-emoji.min.js"></script>
 ```
 Before add ```emoji``` to summernote toolbar.
 
