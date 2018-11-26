@@ -57,7 +57,7 @@
                     }
                     self.$panel.hide();
                 });
-                $body.on('click', `.${editorId} .emoji-menu-tab`, function (e) {
+                $body.on('click', '.' + editorId + ' .emoji-menu-tab', function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     var index = 0;
@@ -65,7 +65,7 @@
                     curclass = curclass[1].split('-');
                     if(curclass.length===3) return;
                     curclass = curclass[0]+'-'+curclass[1];
-                    $(`.${editorId} .emoji-menu-tabs td`).each(function(i){
+                    $('.' + editorId + ' .emoji-menu-tabs td').each(function(i){
                         var $a = $(this).find('a');
                         var aclass = $a.attr("class").split(' ');
                         aclass = aclass[1].split('-');
@@ -79,7 +79,7 @@
                     });
                     updateEmojisList(index);
                 });
-                $(document).on('click', `.${editorId} .emoji-items a`, function(){
+                $(document).on('click', '.' + editorId + ' .emoji-items a', function(){
                     var emoji = $('.label', $(this)).text();
                     if (document.emojiType === 'unicode') {
                         context.invoke('editor.insertText', colonToUnicode(emoji));
@@ -145,7 +145,7 @@
                 }
             };
             var updateEmojisList = function (index) {
-                var $items = $(`.${editorId} .emoji-items`);
+                var $items = $('.' + editorId + ' .emoji-items');
                 $items.html('');
                 if(index > 0) {
                     $.each(self.icons, function (key, icon) {
@@ -238,7 +238,7 @@
                 }
             };
             this.initialize = function () {
-                this.$panel = $(`<div class="emoji-menu ${editorId}">\n` +
+                this.$panel = $('<div class="emoji-menu ' + editorId + '">\n' +
                     '    <div class="emoji-items-wrap1">\n' +
                     '        <table class="emoji-menu-tabs">\n' +
                     '            <tbody>\n' +
