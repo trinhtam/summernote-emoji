@@ -15,7 +15,10 @@
             var ui = $.summernote.ui;
             var icons = {};
             var reverseIcons = {};
-            var editorId = context.$note[0].id;
+            var editorId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
             var chunk = function (val, chunkSize) {
                 var R = [];
                 for (var i = 0; i < val.length; i += chunkSize)
