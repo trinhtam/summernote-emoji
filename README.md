@@ -1,7 +1,7 @@
 # summernote-emoji
 Summernote emoji plugin
 
-![Screen Shot](https://tamit.info/plugins/summernote-emoji/example/ScreenShot-tam-emoji.png)
+![Screen Shot](https://tamit.info/plugins/summernote-emoji/example/ScreenShot.png)
 
 **Demo** https://tamit.info/plugins/summernote-emoji/example
 # Installation & Usage:
