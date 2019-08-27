@@ -214,8 +214,10 @@
             };
             
             context.memo('button.emoji', function () {
+                if(document.emojiButton === undefined)
+                    document.emojiButton = 'fa fa-smile-o';
                 var button = ui.button({
-                    contents: '<i class="fa fa-smile-o emoji-picker-container emoji-picker"></i>',
+                    contents: '<i class="' + document.emojiButton + ' emoji-picker-container emoji-picker"></i>',
                     click: function () {
                         if(document.emojiSource === undefined)
                             document.emojiSource = '';
