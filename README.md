@@ -33,6 +33,9 @@ $('#summernote').summernote({
 
 # Configuring Options
 ```
+# Emoji Button
+document.emojiButton = 'fas fa-smile'; // default: fa fa-smile-o
+
 #The Emoji selector to input Unicode characters instead of images
 document.emojiType = 'unicode'; // default: image
 
