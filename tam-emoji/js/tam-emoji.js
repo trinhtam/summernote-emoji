@@ -212,7 +212,7 @@
                     }
                 });
             };
-            
+
             context.memo('button.emoji', function () {
                 if(document.emojiButton === undefined)
                     document.emojiButton = 'fa fa-smile-o';
@@ -262,9 +262,11 @@
                     '        </div>\n' +
                     '    </div>\n' +
                     '</div>').hide();
-                this.$panel.appendTo(this.emoji.parent());
-                loadEmojis();
-                updateEmojisList(0);
+                if (typeof this.emoji !== 'undefined') {
+                    this.$panel.appendTo(this.emoji.parent());
+                   loadEmojis();
+                    updateEmojisList(0);
+                }
             };
             this.destroy = function () {
                 this.$panel.remove();
