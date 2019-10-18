@@ -262,7 +262,7 @@
                     '        </div>\n' +
                     '    </div>\n' +
                     '</div>').hide();
-                if (typeof this,emoji !=== undefined) {
+                if (typeof this.emoji !== 'undefined') {
                     this.$panel.appendTo(this.emoji.parent());
                    loadEmojis();
                     updateEmojisList(0);
